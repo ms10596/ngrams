@@ -3,6 +3,10 @@ from collections import Counter
 from nltk import word_tokenize, ngrams
 
 
+def probability(a, b):
+    return a / b if b > 0 else 0
+
+
 class Text:
     def __init__(self, raw):
         self.raw = raw
@@ -18,15 +22,13 @@ class Text:
     def predict(self, word):
         possibilities = []
         probabilities = []
-        for bigram in self.bigrams:
+        for bigram,frequency in self.bicounter.items():
             word_with_other_two_words = ((word,) + bigram)
-            # print(word_with_other_two_words)
             possibilities.append(word_with_other_two_words)
             probabilities.append(
-                self.probability(self.tri_probability(word_with_other_two_words), self.bi_probability(bigram)))
-            # print(probabilities[-1])
+                probability(self.tri_probability(word_with_other_two_words), self.bi_probability(bigram)))
         possibilities, probabilities = zip(*sorted(zip(possibilities, probabilities), key=lambda t: t[1], reverse=True))
-        return set(possibilities[:10]), probabilities[:10]
+        return [(possibilities[i],probabilities[i]) for i in range(len(probabilities[:10])) if probabilities[i] > 0]
 
     def tri_probability(self, trigram):
         if self.tricounter.get(trigram) is not None:
@@ -37,5 +39,3 @@ class Text:
         if self.bicounter.get(bigram) is not None:
             return self.bicounter.get(bigram) / len(bigram)
         return 0
-    def probability(self, a, b):
-        return a / b if b > 0 else 0

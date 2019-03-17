@@ -6,16 +6,28 @@
 </head>
 <body>
 <div>
-    <h1>Type in the box</h1>
-    <form method="GET">
-        <input type="text" name = "userInput" placeholder="Search here">
-        <ul>
+    {#    <h1>Type in the box</h1>#}
+    <form method="POST">
+        <img  src="/static/pic.png" class="center">
+        {#        <input type="text" name = "userInput" placeholder="Search here">#}
+        <input list="suggestion" name="userInput" class="center" />
+        <datalist id="suggestion">
             {% for o in out %}
-            <li>{{ o }}</li>
+            <option>{{ o }}</option>
             {% endfor %}
-         </ul>
+        </datalist>
+
+        <input type="submit" class="center">
     </form>
 </div>
 
 </body>
+<style>
+    .center {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 25%;
+    }
+</style>
 </html>

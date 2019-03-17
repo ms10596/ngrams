@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JOOJLE</title>
+</head>
+<body>
+<div>
+    <h1>Type in the box</h1>
+    <form method="GET">
+        <input type="text" name = "userInput" placeholder="Search here">
+        <ul>
+            {% for o in out %}
+            <li>{{ o }}</li>
+            {% endfor %}
+         </ul>
+    </form>
+</div>
+
+</body>
+</html>

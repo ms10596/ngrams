@@ -7,7 +7,7 @@ app = Flask(__name__)
 def index():
     return render_template("index.html")
 
-@app.route("/com", methods=["GET", "POST"])
+@app.route("/", methods=["GET", "POST"])
 def predict():
     f = open('corpus.txt', encoding='utf-8')
     text = Text(f.read())

@@ -2,9 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>JOOJle</title>
 </head>
 <body>
-$END$
+<div>
+    <h1>Type in the box</h1>
+    <form method="GET">
+        <input type="text" name = "userInput">
+    </form>
+</div>
+        <ul>
+            {% for o in out %}
+            <li>{{o}}</li>
+            {% endfor %}
+         </ul>
 </body>
 </html>
